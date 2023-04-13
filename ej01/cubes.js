@@ -20,6 +20,7 @@ scene.add(camera);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 // Tamaño Cubo Inicial
 Size = 2;
+m = Size;
 // Cantidad Cubos
 Cubes = 0
 // Posición cubos
@@ -49,7 +50,17 @@ function animation1(){
 }
 
 function animation2(){
+  if(c == 0){
     cube[c].position.x += 5;
+  }else{
+    if(c == 1){
+      cube[c].rotation.y += 10;
+    }else{
+      if(c == 2){
+        cube[c].scale.z += 15;  
+      }
+    }
+  } 
 }
 
 const light1 = new THREE.DirectionalLight(0x00ffff, 1);
@@ -71,14 +82,30 @@ scene.add(gridHelper);
 document.addEventListener('keydown', function(event) {
   switch(event.keyCode) {
       case 83:
-      if (s == 0){
-        animation1();
-        s = 1;
-      }
-      if (s == 1){
-        animation2();
-        c++;
+      if(c < 3){
+        if (s == 0){
+          animation1();
+          s = 1;
+        }else{
+          animation2();
+          c++;
+          s = 0;
+        }
+      }else{
+        i = 0;
+        do{
+          scene.remove(cube[i]);
+          cube[i].geometry.dispose();
+          cube[i].material.dispose();
+          cube[i] = undefined;
+          i = i + 1;
+        }while(i < 3);
+        c = 0;
         s = 0;
+        Size = m;
+        x = Size / 2;
+        y = Size / 2;
+        z = Size / 2;
       }
       break;
   }
