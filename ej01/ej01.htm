@@ -4,17 +4,19 @@
     <meta charset="utf-8" />
     <title>Ejemplo 1</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      canvas {
-        width: 100%;
-        height: 100%;
-      }
+            html, body { margin: 0; padding: 0; overflow: hidden; }
+            #text {
+                position: absolute;
+                padding: 10px;
+                width: 100%;
+                text-align: left;
+                color: #000000;
+            } 
     </style>
   </head>
   <body>
+    <div id="text">S = Siguiente Fotograma<br/>
+  </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
     <script src="three.min.js"></script>
     <script src="OrbitControls.js"></script>
